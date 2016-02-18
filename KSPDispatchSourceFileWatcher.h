@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+#import "KSPDispatchSourceFileChangeType.h"
+
 // * * *.
 
 @protocol KSPDispatchSourceFileWatcherDelegate;
@@ -16,9 +18,9 @@
 
 @interface KSPDispatchSourceFileWatcher : NSObject
 
-+ (nullable instancetype) fileWatcherWithFileURL: (nonnull NSURL*) fileURL;
++ (nullable instancetype) fileWatcherWithFileURL: (nonnull NSURL*) fileURL fileChangeTypeMask: (KSPDispatchSourceFileChangeType) fileChangeTypeMask;
 
-- (nullable instancetype) initWithFileURL: (nonnull NSURL*) fileURL;
+- (nullable instancetype) initWithFileURL: (nonnull NSURL*) fileURL fileChangeTypeMask: (KSPDispatchSourceFileChangeType) fileChangeTypeMask;
 
 @property(readonly, strong, nonatomic, nonnull) NSURL* fileURL;
 

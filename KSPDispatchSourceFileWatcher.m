@@ -23,12 +23,12 @@
 
 #pragma mark - Initialization
 
-+ (nullable instancetype) fileWatcherWithFileURL: (nonnull NSURL*) fileURL
++ (nullable instancetype) fileWatcherWithFileURL: (nonnull NSURL*) fileURL fileChangeTypeMask: (KSPDispatchSourceFileChangeType) fileChangeTypeMask
 {
-  return [[self alloc] initWithFileURL: fileURL];
+  return [[self alloc] initWithFileURL: fileURL fileChangeTypeMask: fileChangeTypeMask];
 }
 
-- (nullable instancetype) initWithFileURL: (nonnull NSURL*) fileURL
+- (nullable instancetype) initWithFileURL: (nonnull NSURL*) fileURL fileChangeTypeMask: (KSPDispatchSourceFileChangeType) fileChangeTypeMask;
 {
   NSParameterAssert(fileURL);
 
@@ -42,7 +42,7 @@
 
   _fileURL = fileURL;
 
-  if(![self setup]) return nil;
+  if(![self setupWithFileChangeTypeMask: fileChangeTypeMask]) return nil;
 
   return self;
 }
@@ -82,7 +82,7 @@
 
 #pragma mark - Private Methods
 
-- (BOOL) setup
+- (BOOL) setupWithFileChangeTypeMask: (KSPDispatchSourceFileChangeType) fileChangeTypeMask
 {
   const char* path = _fileURL.fileSystemRepresentation;
 
@@ -92,7 +92,7 @@
 
   // * * *.
 
-  const unsigned long mask = (DISPATCH_VNODE_DELETE | DISPATCH_VNODE_WRITE | DISPATCH_VNODE_EXTEND | DISPATCH_VNODE_ATTRIB | DISPATCH_VNODE_LINK | DISPATCH_VNODE_RENAME | DISPATCH_VNODE_REVOKE);
+  const unsigned long mask = [[self class] vnodeFlagsWithFileChangeTypeMask: fileChangeTypeMask];
 
   _dispatchSource = dispatch_source_create(DISPATCH_SOURCE_TYPE_VNODE, _fileDescriptor, mask, dispatch_get_main_queue());
 
@@ -131,7 +131,7 @@
 
       const unsigned long vnodeFlags = dispatch_source_get_data(_dispatchSource);
 
-      [self.delegate dispatchSourceFileWatcher: strongSelfOrNil fileDidChange: [[strongSelfOrNil class] fileChangeTypeWithVnodeFlags: vnodeFlags]];
+      [self.delegate dispatchSourceFileWatcher: strongSelfOrNil fileDidChange: [[strongSelfOrNil class] fileChangeTypeMaskWithVnodeFlags: vnodeFlags]];
     });
   }}
 
@@ -162,46 +162,88 @@
   return YES;
 }
 
-+ (KSPDispatchSourceFileChangeType) fileChangeTypeWithVnodeFlags: (unsigned long) vnodeFlags
++ (unsigned long) vnodeFlagsWithFileChangeTypeMask: (KSPDispatchSourceFileChangeType) fileChangeTypeMask
 {
-  KSPDispatchSourceFileChangeType fileChangeType;
+  unsigned long vnodeFlags;
+
+  if(fileChangeTypeMask & KSPDispatchSourceFileChangeTypeDelete)
+  {
+    vnodeFlags |= DISPATCH_VNODE_DELETE;
+  }
+
+  if(fileChangeTypeMask & KSPDispatchSourceFileChangeTypeWrite)
+  {
+    vnodeFlags |= DISPATCH_VNODE_WRITE;
+  }
+
+  if(fileChangeTypeMask & KSPDispatchSourceFileChangeTypeExtend)
+  {
+    vnodeFlags |= DISPATCH_VNODE_EXTEND;
+  }
+
+  if(fileChangeTypeMask & KSPDispatchSourceFileChangeTypeAttribute)
+  {
+    vnodeFlags |= DISPATCH_VNODE_ATTRIB;
+  }
+
+  if(fileChangeTypeMask & KSPDispatchSourceFileChangeTypeLink)
+  {
+    vnodeFlags |= DISPATCH_VNODE_LINK;
+  }
+
+  if(fileChangeTypeMask & KSPDispatchSourceFileChangeTypeRename)
+  {
+    vnodeFlags |= DISPATCH_VNODE_RENAME;
+  }
+
+  if(fileChangeTypeMask & KSPDispatchSourceFileChangeTypeRevoke)
+  {
+    vnodeFlags |= DISPATCH_VNODE_REVOKE;
+  }
+
+  return vnodeFlags;
+}
+
++ (KSPDispatchSourceFileChangeType) fileChangeTypeMaskWithVnodeFlags: (unsigned long) vnodeFlags
+{
+  KSPDispatchSourceFileChangeType fileChangeTypeMask;
 
   if(vnodeFlags & DISPATCH_VNODE_DELETE)
   {
-    fileChangeType |= KSPDispatchSourceFileChangeTypeDelete;
+    fileChangeTypeMask |= KSPDispatchSourceFileChangeTypeDelete;
   }
 
   if(vnodeFlags & DISPATCH_VNODE_WRITE)
   {
-    fileChangeType |= KSPDispatchSourceFileChangeTypeWrite;
+    fileChangeTypeMask |= KSPDispatchSourceFileChangeTypeWrite;
   }
 
   if(vnodeFlags & DISPATCH_VNODE_EXTEND)
   {
-    fileChangeType |= KSPDispatchSourceFileChangeTypeExtend;
+    fileChangeTypeMask |= KSPDispatchSourceFileChangeTypeExtend;
   }
 
   if(vnodeFlags & DISPATCH_VNODE_ATTRIB)
   {
-    fileChangeType |= KSPDispatchSourceFileChangeTypeAttribute;
+    fileChangeTypeMask |= KSPDispatchSourceFileChangeTypeAttribute;
   }
 
   if(vnodeFlags & DISPATCH_VNODE_LINK)
   {
-    fileChangeType |= KSPDispatchSourceFileChangeTypeLink;
+    fileChangeTypeMask |= KSPDispatchSourceFileChangeTypeLink;
   }
 
   if(vnodeFlags & DISPATCH_VNODE_RENAME)
   {
-    fileChangeType |= KSPDispatchSourceFileChangeTypeRename;
+    fileChangeTypeMask |= KSPDispatchSourceFileChangeTypeRename;
   }
 
   if(vnodeFlags & DISPATCH_VNODE_REVOKE)
   {
-    fileChangeType |= KSPDispatchSourceFileChangeTypeRevoke;
+    fileChangeTypeMask |= KSPDispatchSourceFileChangeTypeRevoke;
   }
 
-  return fileChangeType;
+  return fileChangeTypeMask;
 }
 
 @end

@@ -20,6 +20,6 @@
 
 @required;
 
-- (void) dispatchSourceFileWatcher: (nonnull KSPDispatchSourceFileWatcher*) fileWatcher fileDidChange: (KSPDispatchSourceFileChangeType) fileChangeType;
+- (void) dispatchSourceFileWatcher: (nonnull KSPDispatchSourceFileWatcher*) fileWatcher fileDidChange: (KSPDispatchSourceFileChangeType) fileChangeTypeMask;
 
 @end
