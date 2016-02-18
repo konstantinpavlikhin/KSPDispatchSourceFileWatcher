@@ -18,9 +18,15 @@
 
 @interface KSPDispatchSourceFileWatcher : NSObject
 
++ (nullable instancetype) fileWatcherWithFileURL: (nonnull NSURL*) fileURL;
+
 + (nullable instancetype) fileWatcherWithFileURL: (nonnull NSURL*) fileURL fileChangeTypeMask: (KSPDispatchSourceFileChangeType) fileChangeTypeMask;
 
-- (nullable instancetype) initWithFileURL: (nonnull NSURL*) fileURL fileChangeTypeMask: (KSPDispatchSourceFileChangeType) fileChangeTypeMask;
+- (nullable instancetype) init NS_UNAVAILABLE;
+
+- (nullable instancetype) initWithFileURL: (nonnull NSURL*) fileURL;
+
+- (nullable instancetype) initWithFileURL: (nonnull NSURL*) fileURL fileChangeTypeMask: (KSPDispatchSourceFileChangeType) fileChangeTypeMask NS_DESIGNATED_INITIALIZER;
 
 @property(readonly, strong, nonatomic, nonnull) NSURL* fileURL;
 

@@ -23,9 +23,28 @@
 
 #pragma mark - Initialization
 
++ (nullable instancetype) fileWatcherWithFileURL: (nonnull NSURL*) fileURL
+{
+  return [[self alloc] initWithFileURL: fileURL];
+}
+
 + (nullable instancetype) fileWatcherWithFileURL: (nonnull NSURL*) fileURL fileChangeTypeMask: (KSPDispatchSourceFileChangeType) fileChangeTypeMask
 {
   return [[self alloc] initWithFileURL: fileURL fileChangeTypeMask: fileChangeTypeMask];
+}
+
+- (nullable instancetype) init
+{
+  NSAssert(NO, @"-init unavailable! Use -%@ instead.", NSStringFromSelector(@selector(initWithFileURL:)));
+
+  return nil;
+}
+
+- (nullable instancetype) initWithFileURL: (nonnull NSURL*) fileURL
+{
+  const KSPDispatchSourceFileChangeType allFileChangeTypes = (KSPDispatchSourceFileChangeTypeDelete | KSPDispatchSourceFileChangeTypeWrite | KSPDispatchSourceFileChangeTypeExtend | KSPDispatchSourceFileChangeTypeAttribute | KSPDispatchSourceFileChangeTypeLink | KSPDispatchSourceFileChangeTypeRename | KSPDispatchSourceFileChangeTypeRevoke);
+
+  return [self initWithFileURL: fileURL fileChangeTypeMask: allFileChangeTypes];
 }
 
 - (nullable instancetype) initWithFileURL: (nonnull NSURL*) fileURL fileChangeTypeMask: (KSPDispatchSourceFileChangeType) fileChangeTypeMask;
