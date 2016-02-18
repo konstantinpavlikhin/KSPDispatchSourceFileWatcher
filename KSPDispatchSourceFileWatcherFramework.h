@@ -1,5 +1,5 @@
 //
-//  KSPDispatchSourceFileWatcher.h
+//  KSPDispatchSourceFileWatcherFramework.h
 //  KSPDispatchSourceFileWatcher
 //
 //  Created by Konstantin Pavlikhin on 18.02.16.
@@ -14,6 +14,4 @@ FOUNDATION_EXPORT double KSPDispatchSourceFileWatcherVersionNumber;
 //! Project version string for KSPDispatchSourceFileWatcher.
 FOUNDATION_EXPORT const unsigned char KSPDispatchSourceFileWatcherVersionString[];
 
-// In this header, you should import all the public headers of your framework using statements like #import <KSPDispatchSourceFileWatcher/PublicHeader.h>
-
-
+// In this header, you should import all the public headers of your framework.
