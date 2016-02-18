@@ -22,6 +22,7 @@
 		B53902251C75B8DA00285592 /* KSPDispatchSourceFileWatcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSPDispatchSourceFileWatcher.m; sourceTree = SOURCE_ROOT; };
 		B53902281C75B8F200285592 /* KSPDispatchSourceFileWatcher+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "KSPDispatchSourceFileWatcher+Private.h"; sourceTree = SOURCE_ROOT; };
 		B539022A1C75B91800285592 /* KSPDispatchSourceFileWatcherDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSPDispatchSourceFileWatcherDelegate.h; sourceTree = SOURCE_ROOT; };
+		B539022C1C75BA8A00285592 /* KSPDispatchSourceFileChangeType.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KSPDispatchSourceFileChangeType.h; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +57,7 @@
 		B53902161C75B5B200285592 /* KSPDispatchSourceFileWatcher */ = {
 			isa = PBXGroup;
 			children = (
+				B539022C1C75BA8A00285592 /* KSPDispatchSourceFileChangeType.h */,
 				B539022A1C75B91800285592 /* KSPDispatchSourceFileWatcherDelegate.h */,
 				B53902241C75B8DA00285592 /* KSPDispatchSourceFileWatcher.h */,
 				B53902281C75B8F200285592 /* KSPDispatchSourceFileWatcher+Private.h */,
