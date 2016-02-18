@@ -12,8 +12,6 @@
 		B53902271C75B8DA00285592 /* KSPDispatchSourceFileWatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = B53902251C75B8DA00285592 /* KSPDispatchSourceFileWatcher.m */; };
 		B53902291C75B8F200285592 /* KSPDispatchSourceFileWatcher+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = B53902281C75B8F200285592 /* KSPDispatchSourceFileWatcher+Private.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		B539022B1C75B91800285592 /* KSPDispatchSourceFileWatcherDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = B539022A1C75B91800285592 /* KSPDispatchSourceFileWatcherDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		B539022F1C75F4EF00285592 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = B539022E1C75F4EF00285592 /* README.md */; };
-		B53902311C75F5EF00285592 /* LICENSE.md in Sources */ = {isa = PBXBuildFile; fileRef = B53902301C75F5EF00285592 /* LICENSE.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -161,8 +159,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B539022F1C75F4EF00285592 /* README.md in Sources */,
-				B53902311C75F5EF00285592 /* LICENSE.md in Sources */,
 				B53902271C75B8DA00285592 /* KSPDispatchSourceFileWatcher.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
