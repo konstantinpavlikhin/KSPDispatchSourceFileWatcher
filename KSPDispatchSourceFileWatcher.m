@@ -10,6 +10,12 @@
 
 #import "KSPDispatchSourceFileWatcherDelegate.h"
 
+// * * *.
+
+NSString* const KSPDispatchSourceFileWatcherErrorDomain = @"com.konstantinpavlikhin.KSPDispatchSourceFileWatcher.ErrorDomain";
+
+// * * *.
+
 @implementation KSPDispatchSourceFileWatcher
 {
   NSURL* _Nonnull _fileURL;
@@ -23,31 +29,31 @@
 
 #pragma mark - Initialization
 
-+ (nullable instancetype) fileWatcherWithFileURL: (nonnull NSURL*) fileURL
++ (nullable instancetype) fileWatcherWithFileURL: (nonnull NSURL*) fileURL error: (NSError* _Nullable * _Nullable) errorOrNull
 {
-  return [[self alloc] initWithFileURL: fileURL];
+  return [[self alloc] initWithFileURL: fileURL error: errorOrNull];
 }
 
-+ (nullable instancetype) fileWatcherWithFileURL: (nonnull NSURL*) fileURL fileChangeTypeMask: (KSPDispatchSourceFileChangeType) fileChangeTypeMask
++ (nullable instancetype) fileWatcherWithFileURL: (nonnull NSURL*) fileURL fileChangeTypeMask: (KSPDispatchSourceFileChangeType) fileChangeTypeMask error: (NSError* _Nullable * _Nullable) errorOrNull
 {
-  return [[self alloc] initWithFileURL: fileURL fileChangeTypeMask: fileChangeTypeMask];
+  return [[self alloc] initWithFileURL: fileURL fileChangeTypeMask: fileChangeTypeMask error: errorOrNull];
 }
 
 - (nullable instancetype) init
 {
-  NSAssert(NO, @"-init unavailable! Use -%@ instead.", NSStringFromSelector(@selector(initWithFileURL:)));
+  NSAssert(NO, @"-init unavailable! Use -%@ instead.", NSStringFromSelector(@selector(initWithFileURL:error:)));
 
   return nil;
 }
 
-- (nullable instancetype) initWithFileURL: (nonnull NSURL*) fileURL
+- (nullable instancetype) initWithFileURL: (nonnull NSURL*) fileURL error: (NSError* _Nullable * _Nullable) errorOrNull
 {
   const KSPDispatchSourceFileChangeType allFileChangeTypes = (KSPDispatchSourceFileChangeTypeDelete | KSPDispatchSourceFileChangeTypeWrite | KSPDispatchSourceFileChangeTypeExtend | KSPDispatchSourceFileChangeTypeAttribute | KSPDispatchSourceFileChangeTypeLink | KSPDispatchSourceFileChangeTypeRename | KSPDispatchSourceFileChangeTypeRevoke);
 
-  return [self initWithFileURL: fileURL fileChangeTypeMask: allFileChangeTypes];
+  return [self initWithFileURL: fileURL fileChangeTypeMask: allFileChangeTypes error: errorOrNull];
 }
 
-- (nullable instancetype) initWithFileURL: (nonnull NSURL*) fileURL fileChangeTypeMask: (KSPDispatchSourceFileChangeType) fileChangeTypeMask;
+- (nullable instancetype) initWithFileURL: (nonnull NSURL*) fileURL fileChangeTypeMask: (KSPDispatchSourceFileChangeType) fileChangeTypeMask error: (NSError* _Nullable * _Nullable) errorOrNull
 {
   NSParameterAssert(fileURL);
 
@@ -61,7 +67,7 @@
 
   _fileURL = fileURL;
 
-  if(![self setupWithFileChangeTypeMask: fileChangeTypeMask]) return nil;
+  if(![self setupWithFileChangeTypeMask: fileChangeTypeMask error: errorOrNull]) return nil;
 
   return self;
 }
@@ -108,13 +114,21 @@
 
 #pragma mark - Private Methods
 
-- (BOOL) setupWithFileChangeTypeMask: (KSPDispatchSourceFileChangeType) fileChangeTypeMask
+- (BOOL) setupWithFileChangeTypeMask: (KSPDispatchSourceFileChangeType) fileChangeTypeMask error: (NSError* _Nullable * _Nullable) errorOrNull
 {
   const char* path = _fileURL.fileSystemRepresentation;
 
   _fileDescriptor = open(path, O_EVTONLY);
 
-  if(_fileDescriptor < 0) return NO;
+  if(_fileDescriptor < 0)
+  {
+    if(errorOrNull != NULL)
+    {
+      *errorOrNull = [[self class] unableToOpenFileDescriptorErrorWithUnderlyingErrorCode: errno fileURL: _fileURL filePath: path];
+    }
+
+    return NO;
+  }
 
   // * * *.
 
@@ -127,6 +141,13 @@
     close(_fileDescriptor);
 
     _fileDescriptor = -1;
+
+    // * * *.
+
+    if(errorOrNull != NULL)
+    {
+      *errorOrNull = [[self class] unableToCreateDispatchSourceErrorWithFileURL: _fileURL filePath: path];
+    }
 
     // * * *.
 
@@ -288,6 +309,50 @@
   }
 
   return fileChangeTypeMask;
+}
+
+#pragma mark - Private Methods | Errors
+
++ (nonnull NSError*) unableToOpenFileDescriptorErrorWithUnderlyingErrorCode: (NSInteger) underlyingErrorCode fileURL: (nonnull NSURL*) fileURL filePath: (const char*) path
+{
+  NSError* const underlyingError  = [NSError errorWithDomain: NSPOSIXErrorDomain code: underlyingErrorCode userInfo: nil];
+
+  // * * *.
+
+  NSMutableDictionary* const userInfo = [NSMutableDictionary dictionary];
+
+  userInfo[NSUnderlyingErrorKey] = underlyingError;
+
+  userInfo[NSLocalizedDescriptionKey] = NSLocalizedString(@"Unable to open a file descriptor.", nil);
+
+  userInfo[NSStringEncodingErrorKey] = @(NSUTF8StringEncoding);
+
+  userInfo[NSURLErrorKey] = fileURL;
+
+  userInfo[NSFilePathErrorKey] = [NSString stringWithUTF8String: path];
+
+  // * * *.
+
+  return [NSError errorWithDomain: KSPDispatchSourceFileWatcherErrorDomain code: KSPDispatchSourceFileWatcherErrorUnableToOpenFileDescriptor userInfo: userInfo];
+}
+
++ (nonnull NSError*) unableToCreateDispatchSourceErrorWithFileURL: (nonnull NSURL*) fileURL filePath: (const char*) path
+{
+  NSMutableDictionary* const userInfo = [NSMutableDictionary dictionary];
+
+  // * * *.
+
+  userInfo[NSLocalizedDescriptionKey] = NSLocalizedString(@"Unable to create a dispatch source.", nil);
+
+  userInfo[NSStringEncodingErrorKey] = @(NSUTF8StringEncoding);
+
+  userInfo[NSURLErrorKey] = fileURL;
+
+  userInfo[NSFilePathErrorKey] = [NSString stringWithUTF8String: path];
+
+  // * * *.
+
+  return [NSError errorWithDomain: KSPDispatchSourceFileWatcherErrorDomain code: KSPDispatchSourceFileWatcherErrorUnableToCreateDispatchSource userInfo: userInfo];
 }
 
 @end
