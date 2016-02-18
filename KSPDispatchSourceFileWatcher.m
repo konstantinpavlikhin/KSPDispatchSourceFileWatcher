@@ -227,6 +227,8 @@ NSString* const KSPDispatchSourceFileWatcherErrorDomain = @"com.konstantinpavlik
   return YES;
 }
 
+#pragma mark - Private Methods | KSPDispatchSourceFileChangeType ⟷ VNode Flags Mapping
+
 + (unsigned long) vnodeFlagsWithFileChangeTypeMask: (KSPDispatchSourceFileChangeType) fileChangeTypeMask
 {
   unsigned long vnodeFlags = 0;
