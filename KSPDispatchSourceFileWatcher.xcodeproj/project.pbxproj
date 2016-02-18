@@ -12,6 +12,7 @@
 		B53902271C75B8DA00285592 /* KSPDispatchSourceFileWatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = B53902251C75B8DA00285592 /* KSPDispatchSourceFileWatcher.m */; };
 		B53902291C75B8F200285592 /* KSPDispatchSourceFileWatcher+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = B53902281C75B8F200285592 /* KSPDispatchSourceFileWatcher+Private.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		B539022B1C75B91800285592 /* KSPDispatchSourceFileWatcherDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = B539022A1C75B91800285592 /* KSPDispatchSourceFileWatcherDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B539022F1C75F4EF00285592 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = B539022E1C75F4EF00285592 /* README.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,6 +24,7 @@
 		B53902281C75B8F200285592 /* KSPDispatchSourceFileWatcher+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "KSPDispatchSourceFileWatcher+Private.h"; sourceTree = SOURCE_ROOT; };
 		B539022A1C75B91800285592 /* KSPDispatchSourceFileWatcherDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSPDispatchSourceFileWatcherDelegate.h; sourceTree = SOURCE_ROOT; };
 		B539022C1C75BA8A00285592 /* KSPDispatchSourceFileChangeType.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KSPDispatchSourceFileChangeType.h; sourceTree = SOURCE_ROOT; };
+		B539022E1C75F4EF00285592 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +71,7 @@
 		B53902231C75B76200285592 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				B539022E1C75F4EF00285592 /* README.md */,
 				B539021F1C75B66600285592 /* KSPDispatchSourceFileWatcher.plist */,
 			);
 			name = Resources;
@@ -155,6 +158,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B539022F1C75F4EF00285592 /* README.md in Sources */,
 				B53902271C75B8DA00285592 /* KSPDispatchSourceFileWatcher.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
