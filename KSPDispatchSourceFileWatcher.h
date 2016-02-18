@@ -18,7 +18,7 @@ extern NSString* _Nonnull const KSPDispatchSourceFileWatcherErrorDomain;
 
 typedef NS_ENUM(NSUInteger, KSPDispatchSourceFileWatcherError)
 {
-  KSPDispatchSourceFileWatcherErrorUnableToOpenFileDescriptor = 0,
+  KSPDispatchSourceFileWatcherErrorUnableToOpenFile = 0,
 
   KSPDispatchSourceFileWatcherErrorUnableToCreateDispatchSource = 1
 };

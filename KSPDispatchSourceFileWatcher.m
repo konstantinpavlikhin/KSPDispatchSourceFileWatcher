@@ -124,7 +124,7 @@ NSString* const KSPDispatchSourceFileWatcherErrorDomain = @"com.konstantinpavlik
   {
     if(errorOrNull != NULL)
     {
-      *errorOrNull = [[self class] unableToOpenFileDescriptorErrorWithUnderlyingErrorCode: errno fileURL: _fileURL filePath: path];
+      *errorOrNull = [[self class] unableToOpenFileErrorWithUnderlyingErrorCode: errno fileURL: _fileURL filePath: path];
     }
 
     return NO;
@@ -315,7 +315,7 @@ NSString* const KSPDispatchSourceFileWatcherErrorDomain = @"com.konstantinpavlik
 
 #pragma mark - Private Methods | Errors
 
-+ (nonnull NSError*) unableToOpenFileDescriptorErrorWithUnderlyingErrorCode: (NSInteger) underlyingErrorCode fileURL: (nonnull NSURL*) fileURL filePath: (const char*) path
++ (nonnull NSError*) unableToOpenFileErrorWithUnderlyingErrorCode: (NSInteger) underlyingErrorCode fileURL: (nonnull NSURL*) fileURL filePath: (const char*) path
 {
   NSError* const underlyingError  = [NSError errorWithDomain: NSPOSIXErrorDomain code: underlyingErrorCode userInfo: nil];
 
@@ -325,7 +325,7 @@ NSString* const KSPDispatchSourceFileWatcherErrorDomain = @"com.konstantinpavlik
 
   userInfo[NSUnderlyingErrorKey] = underlyingError;
 
-  userInfo[NSLocalizedDescriptionKey] = NSLocalizedString(@"Unable to open a file descriptor.", nil);
+  userInfo[NSLocalizedDescriptionKey] = NSLocalizedString(@"Unable to open a file.", nil);
 
   userInfo[NSStringEncodingErrorKey] = @(NSUTF8StringEncoding);
 
@@ -335,7 +335,7 @@ NSString* const KSPDispatchSourceFileWatcherErrorDomain = @"com.konstantinpavlik
 
   // * * *.
 
-  return [NSError errorWithDomain: KSPDispatchSourceFileWatcherErrorDomain code: KSPDispatchSourceFileWatcherErrorUnableToOpenFileDescriptor userInfo: userInfo];
+  return [NSError errorWithDomain: KSPDispatchSourceFileWatcherErrorDomain code: KSPDispatchSourceFileWatcherErrorUnableToOpenFile userInfo: userInfo];
 }
 
 + (nonnull NSError*) unableToCreateDispatchSourceErrorWithFileURL: (nonnull NSURL*) fileURL filePath: (const char*) path
