@@ -168,7 +168,7 @@
 
       const unsigned long vnodeFlags = dispatch_source_get_data(_dispatchSource);
 
-      [self.delegate dispatchSourceFileWatcher: strongSelfOrNil fileDidChange: [[strongSelfOrNil class] fileChangeTypeMaskWithVnodeFlags: vnodeFlags]];
+      [strongSelfOrNil.delegate dispatchSourceFileWatcher: strongSelfOrNil fileDidChange: [[strongSelfOrNil class] fileChangeTypeMaskWithVnodeFlags: vnodeFlags]];
     });
   }}
 
