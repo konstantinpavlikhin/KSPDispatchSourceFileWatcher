@@ -7,13 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B53902181C75B5B200285592 /* KSPDispatchSourceFileWatcher.h in Headers */ = {isa = PBXBuildFile; fileRef = B53902171C75B5B200285592 /* KSPDispatchSourceFileWatcher.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B53902221C75B66600285592 /* KSPDispatchSourceFileWatcher.h in Headers */ = {isa = PBXBuildFile; fileRef = B53902201C75B66600285592 /* KSPDispatchSourceFileWatcher.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		B53902141C75B5B200285592 /* KSPDispatchSourceFileWatcher.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KSPDispatchSourceFileWatcher.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		B53902171C75B5B200285592 /* KSPDispatchSourceFileWatcher.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KSPDispatchSourceFileWatcher.h; sourceTree = "<group>"; };
-		B53902191C75B5B200285592 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B539021F1C75B66600285592 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = SOURCE_ROOT; };
+		B53902201C75B66600285592 /* KSPDispatchSourceFileWatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSPDispatchSourceFileWatcher.h; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -46,8 +46,8 @@
 		B53902161C75B5B200285592 /* KSPDispatchSourceFileWatcher */ = {
 			isa = PBXGroup;
 			children = (
-				B53902171C75B5B200285592 /* KSPDispatchSourceFileWatcher.h */,
-				B53902191C75B5B200285592 /* Info.plist */,
+				B53902201C75B66600285592 /* KSPDispatchSourceFileWatcher.h */,
+				B539021F1C75B66600285592 /* Info.plist */,
 			);
 			path = KSPDispatchSourceFileWatcher;
 			sourceTree = "<group>";
@@ -59,7 +59,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B53902181C75B5B200285592 /* KSPDispatchSourceFileWatcher.h in Headers */,
+				B53902221C75B66600285592 /* KSPDispatchSourceFileWatcher.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -230,7 +230,7 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				FRAMEWORK_VERSION = A;
-				INFOPLIST_FILE = KSPDispatchSourceFileWatcher/Info.plist;
+				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.konstantinpavlikhin.KSPDispatchSourceFileWatcher;
@@ -248,7 +248,7 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				FRAMEWORK_VERSION = A;
-				INFOPLIST_FILE = KSPDispatchSourceFileWatcher/Info.plist;
+				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.konstantinpavlikhin.KSPDispatchSourceFileWatcher;
@@ -276,6 +276,7 @@
 				B539021E1C75B5B200285592 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
