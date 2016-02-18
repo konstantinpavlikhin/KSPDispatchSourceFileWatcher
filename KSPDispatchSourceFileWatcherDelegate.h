@@ -8,6 +8,18 @@
 
 #import <Foundation/Foundation.h>
 
+#import "KSPDispatchSourceFileChangeType.h"
+
+// * * *.
+
+@class KSPDispatchSourceFileWatcher;
+
+// * * *.
+
 @protocol KSPDispatchSourceFileWatcherDelegate <NSObject>
+
+@required;
+
+- (void) dispatchSourceFileWatcher: (nonnull KSPDispatchSourceFileWatcher*) fileWatcher fileDidChange: (KSPDispatchSourceFileChangeType) fileChangeType;
 
 @end
