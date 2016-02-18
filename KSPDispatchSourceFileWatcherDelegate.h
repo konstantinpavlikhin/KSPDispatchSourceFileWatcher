@@ -18,8 +18,16 @@
 
 @protocol KSPDispatchSourceFileWatcherDelegate <NSObject>
 
+@optional;
+
+- (void) dispatchSourceFileWatcherDidRegister: (nonnull KSPDispatchSourceFileWatcher*) fileWatcher;
+
 @required;
 
 - (void) dispatchSourceFileWatcher: (nonnull KSPDispatchSourceFileWatcher*) fileWatcher fileDidChange: (KSPDispatchSourceFileChangeType) fileChangeTypeMask;
+
+@optional;
+
+- (void) dispatchSourceFileWatcherDidCancel: (nonnull KSPDispatchSourceFileWatcher*) fileWatcher;
 
 @end

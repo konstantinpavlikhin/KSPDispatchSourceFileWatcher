@@ -136,9 +136,20 @@
   // * * *.
 
   {{
+    __weak typeof(self) const weakSelf = self;
+
     dispatch_source_set_registration_handler(_dispatchSource, ^
     {
-      // Nope.
+      __strong typeof(self) _Nullable const strongSelfOrNil = weakSelf;
+
+      if(!strongSelfOrNil) return;
+
+      // * * *.
+
+      if([strongSelfOrNil.delegate respondsToSelector: @selector(dispatchSourceFileWatcherDidRegister:)])
+      {
+        [strongSelfOrNil.delegate dispatchSourceFileWatcherDidRegister: strongSelfOrNil];
+      }
     });
   }}
 
@@ -179,6 +190,13 @@
         close(strongSelfOrNil->_fileDescriptor);
 
         strongSelfOrNil->_fileDescriptor = -1;
+      }
+
+      // * * *.
+
+      if([strongSelfOrNil.delegate respondsToSelector: @selector(dispatchSourceFileWatcherDidCancel:)])
+      {
+        [strongSelfOrNil.delegate dispatchSourceFileWatcherDidCancel: strongSelfOrNil];
       }
     });
   }}
