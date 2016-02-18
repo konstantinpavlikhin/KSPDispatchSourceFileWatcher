@@ -15,3 +15,6 @@ FOUNDATION_EXPORT double KSPDispatchSourceFileWatcherVersionNumber;
 FOUNDATION_EXPORT const unsigned char KSPDispatchSourceFileWatcherVersionString[];
 
 // In this header, you should import all the public headers of your framework.
+#import <KSPDispatchSourceFileWatcherDelegate.h>
+
+#import <KSPDispatchSourceFileWatcher.h>
