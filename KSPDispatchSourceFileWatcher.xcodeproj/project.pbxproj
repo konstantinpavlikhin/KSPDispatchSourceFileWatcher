@@ -119,6 +119,7 @@
 		B539020B1C75B5B200285592 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				CLASSPREFIX = KSP;
 				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = "Konstantin Pavlikhin";
 				TargetAttributes = {
