@@ -30,6 +30,8 @@
 
 @property(readonly, strong, nonatomic, nonnull) NSURL* fileURL;
 
+@property(readonly, assign, nonatomic) KSPDispatchSourceFileChangeType fileChangeTypeMask;
+
 @property(readwrite, weak, nonatomic, nullable) id<KSPDispatchSourceFileWatcherDelegate> delegate;
 
 - (void) resume;

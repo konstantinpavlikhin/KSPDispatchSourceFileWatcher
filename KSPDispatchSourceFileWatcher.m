@@ -75,6 +75,13 @@
 
 #pragma mark - Public Methods
 
+- (KSPDispatchSourceFileChangeType) fileChangeTypeMask
+{
+  const unsigned long vnodeFlags = dispatch_source_get_mask(_dispatchSource);
+
+  return [[self class] fileChangeTypeMaskWithVnodeFlags: vnodeFlags];
+}
+
 - (void) resume
 {
   if(_dispatchSource)
