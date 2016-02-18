@@ -208,7 +208,7 @@
 
 + (unsigned long) vnodeFlagsWithFileChangeTypeMask: (KSPDispatchSourceFileChangeType) fileChangeTypeMask
 {
-  unsigned long vnodeFlags;
+  unsigned long vnodeFlags = 0;
 
   if(fileChangeTypeMask & KSPDispatchSourceFileChangeTypeDelete)
   {
@@ -250,7 +250,7 @@
 
 + (KSPDispatchSourceFileChangeType) fileChangeTypeMaskWithVnodeFlags: (unsigned long) vnodeFlags
 {
-  KSPDispatchSourceFileChangeType fileChangeTypeMask;
+  KSPDispatchSourceFileChangeType fileChangeTypeMask = 0;
 
   if(vnodeFlags & DISPATCH_VNODE_DELETE)
   {
