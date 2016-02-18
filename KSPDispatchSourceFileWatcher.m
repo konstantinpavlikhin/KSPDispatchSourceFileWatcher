@@ -22,6 +22,8 @@ NSString* const KSPDispatchSourceFileWatcherErrorDomain = @"com.konstantinpavlik
 
   int _fileDescriptor;
 
+  dispatch_queue_t _serialQueue;
+
   dispatch_source_t _dispatchSource;
 }
 
@@ -134,7 +136,9 @@ NSString* const KSPDispatchSourceFileWatcherErrorDomain = @"com.konstantinpavlik
 
   const unsigned long mask = [[self class] vnodeFlagsWithFileChangeTypeMask: fileChangeTypeMask];
 
-  _dispatchSource = dispatch_source_create(DISPATCH_SOURCE_TYPE_VNODE, _fileDescriptor, mask, dispatch_get_main_queue());
+  _serialQueue = dispatch_queue_create("com.konstantinpavlikhin.KSPDispatchSourceFileWatcher.SerialQueue", DISPATCH_QUEUE_SERIAL);
+
+  _dispatchSource = dispatch_source_create(DISPATCH_SOURCE_TYPE_VNODE, _fileDescriptor, mask, _serialQueue);
 
   if(_dispatchSource == NULL)
   {
