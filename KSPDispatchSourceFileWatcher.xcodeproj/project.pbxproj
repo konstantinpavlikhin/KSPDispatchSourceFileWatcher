@@ -16,13 +16,13 @@
 
 /* Begin PBXFileReference section */
 		B53902141C75B5B200285592 /* KSPDispatchSourceFileWatcher.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KSPDispatchSourceFileWatcher.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		B539021F1C75B66600285592 /* KSPDispatchSourceFileWatcher.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = KSPDispatchSourceFileWatcher.plist; sourceTree = SOURCE_ROOT; };
-		B53902201C75B66600285592 /* KSPDispatchSourceFileWatcherFramework.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSPDispatchSourceFileWatcherFramework.h; sourceTree = SOURCE_ROOT; };
-		B53902241C75B8DA00285592 /* KSPDispatchSourceFileWatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSPDispatchSourceFileWatcher.h; sourceTree = SOURCE_ROOT; };
-		B53902251C75B8DA00285592 /* KSPDispatchSourceFileWatcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSPDispatchSourceFileWatcher.m; sourceTree = SOURCE_ROOT; };
-		B53902281C75B8F200285592 /* KSPDispatchSourceFileWatcher+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "KSPDispatchSourceFileWatcher+Private.h"; sourceTree = SOURCE_ROOT; };
-		B539022A1C75B91800285592 /* KSPDispatchSourceFileWatcherDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSPDispatchSourceFileWatcherDelegate.h; sourceTree = SOURCE_ROOT; };
-		B539022C1C75BA8A00285592 /* KSPDispatchSourceFileChangeType.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KSPDispatchSourceFileChangeType.h; sourceTree = SOURCE_ROOT; };
+		B539021F1C75B66600285592 /* KSPDispatchSourceFileWatcher.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = KSPDispatchSourceFileWatcher.plist; path = Resources/KSPDispatchSourceFileWatcher.plist; sourceTree = SOURCE_ROOT; };
+		B53902201C75B66600285592 /* KSPDispatchSourceFileWatcherFramework.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KSPDispatchSourceFileWatcherFramework.h; path = Sources/KSPDispatchSourceFileWatcherFramework.h; sourceTree = SOURCE_ROOT; };
+		B53902241C75B8DA00285592 /* KSPDispatchSourceFileWatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KSPDispatchSourceFileWatcher.h; path = Sources/KSPDispatchSourceFileWatcher.h; sourceTree = SOURCE_ROOT; };
+		B53902251C75B8DA00285592 /* KSPDispatchSourceFileWatcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KSPDispatchSourceFileWatcher.m; path = Sources/KSPDispatchSourceFileWatcher.m; sourceTree = SOURCE_ROOT; };
+		B53902281C75B8F200285592 /* KSPDispatchSourceFileWatcher+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "KSPDispatchSourceFileWatcher+Private.h"; path = "Sources/KSPDispatchSourceFileWatcher+Private.h"; sourceTree = SOURCE_ROOT; };
+		B539022A1C75B91800285592 /* KSPDispatchSourceFileWatcherDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KSPDispatchSourceFileWatcherDelegate.h; path = Sources/KSPDispatchSourceFileWatcherDelegate.h; sourceTree = SOURCE_ROOT; };
+		B539022C1C75BA8A00285592 /* KSPDispatchSourceFileChangeType.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = KSPDispatchSourceFileChangeType.h; path = Sources/KSPDispatchSourceFileChangeType.h; sourceTree = SOURCE_ROOT; };
 		B539022E1C75F4EF00285592 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		B53902301C75F5EF00285592 /* LICENSE.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = LICENSE.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -261,7 +261,7 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				FRAMEWORK_VERSION = A;
-				INFOPLIST_FILE = KSPDispatchSourceFileWatcher.plist;
+				INFOPLIST_FILE = Resources/KSPDispatchSourceFileWatcher.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.konstantinpavlikhin.KSPDispatchSourceFileWatcher;
@@ -279,7 +279,7 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				FRAMEWORK_VERSION = A;
-				INFOPLIST_FILE = KSPDispatchSourceFileWatcher.plist;
+				INFOPLIST_FILE = Resources/KSPDispatchSourceFileWatcher.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.konstantinpavlikhin.KSPDispatchSourceFileWatcher;
